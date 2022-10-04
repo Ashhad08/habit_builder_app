@@ -7,16 +7,23 @@ class Testing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: FrontEndConfigs.kSecondaryColor,
       body: Center(
-        child: ClipPath(
-          clipper: MyCustomClipper(percentage: 0.5),
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              color: FrontEndConfigs.kHabitColor,
-              borderRadius: BorderRadius.circular(16)
+        child: Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                FrontEndConfigs.kHabitColor,
+                FrontEndConfigs.kWhiteColor,
+                FrontEndConfigs.kWhiteColor,
+              ],
+              stops: [0.7,0.7,1],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
             ),
+            borderRadius: BorderRadius.circular(16)
           ),
         ),
       ),
