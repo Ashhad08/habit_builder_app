@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../configurations/front_end.dart';
+import '../../../../navigation/route_names.dart';
 import '../../../../testing.dart';
 import '../../../elements/custom_floating_button.dart';
 import '../home_view/home_view.dart';
@@ -37,7 +38,9 @@ class _BottomBarViewState extends State<BottomBarView> {
       ),
       floatingActionButton: CustomFloatingButton(
         iconPath: 'assets/images/add.png',
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, RouteNames.createNewHabitViewRoute);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(

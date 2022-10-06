@@ -8,17 +8,19 @@ class HabitFrequencyContainer extends StatelessWidget {
     required this.width,
     required this.fillColor,
     required this.frequency,
+    this.rightMargin = 6,
   }) : super(key: key);
   final double width;
   final Color fillColor;
   final double frequency;
+  final double rightMargin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: width,
       width: width,
-      margin: const EdgeInsets.only(right: 6),
+      margin: EdgeInsets.only(right: rightMargin),
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
           color: FrontEndConfigs.kScaffoldBGColor,

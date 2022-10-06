@@ -12,11 +12,13 @@ class AuthTextField extends StatefulWidget {
     this.validator,
     required this.fillColor,
     this.isPrefix = true,
+    this.height = 56,
   }) : super(key: key);
   final String hintText;
   final IconData? prefixIcon;
   final bool isPasswordField;
   final bool isPrefix;
+  final double height;
 
   // final TextEditingController controller;
   final Function(String)? validator;
@@ -31,7 +33,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56,
+      height: widget.height,
       child: TextFormField(
         validator: (val) => widget.validator!(val!),
         obscureText: widget.obscureText,

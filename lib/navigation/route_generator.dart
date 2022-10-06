@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habit_builder_app/presentation/views/app_views/bottom_bar_view/bottom_bar_view.dart';
+import 'package:habit_builder_app/presentation/views/app_views/create_new_habit_view/create_new_habit.dart';
 import 'package:habit_builder_app/presentation/views/auth_views/forgot_password_view/forgot_password_view.dart';
 
 import '../presentation/elements/custom_text.dart';
@@ -24,6 +26,10 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => SignUpView());
       case RouteNames.forgotPasswordViewRoute:
         return MaterialPageRoute(builder: (_) => ForgotPasswordView());
+      case RouteNames.bottomBarViewRoute:
+        return MaterialPageRoute(builder: (_) => BottomBarView());
+      case RouteNames.createNewHabitViewRoute:
+        return MaterialPageRoute(builder: (_) => CreateNewHabitView());
       default:
         return MaterialPageRoute(
             builder: (context) => const Scaffold(

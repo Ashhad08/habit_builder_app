@@ -13,17 +13,20 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 46,
-      width: 46,
-      child: FloatingActionButton(
-          onPressed: onPressed,
-          elevation: 0,
-          backgroundColor: FrontEndConfigs.kSecondaryColor.withOpacity(0.1),
-          child: Icon(
-            icon,
-            color: FrontEndConfigs.kSecondaryColor,
-          )),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: 46,
+        width: 46,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: FrontEndConfigs.kSecondaryColor.withOpacity(0.1),
+        ),
+        child: Icon(
+          icon,
+          color: FrontEndConfigs.kSecondaryColor,
+        ),
+      ),
     );
   }
 }
