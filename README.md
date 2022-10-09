@@ -4,7 +4,7 @@ Habbit tracking Application.
 
 Its an Application that will help the users to track and build theirs habits.
 
-ScreenShots : 
+ScreenShots :
 
 ![Screenshot_20221003_211927](https://user-images.githubusercontent.com/95564242/193633154-1fa331ad-0394-4526-8487-b8c02608456c.jpg)
 ![Screenshot_20221003_211932](https://user-images.githubusercontent.com/95564242/193633219-1962c38f-b516-48ed-b1c0-e64f4d5f8e88.jpg)

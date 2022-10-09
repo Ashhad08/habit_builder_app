@@ -7,17 +7,19 @@ class CustomIconButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.icon,
+    this.size = 46,
   }) : super(key: key);
   final VoidCallback onPressed;
   final IconData icon;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 46,
-        width: 46,
+        height: size,
+        width: size,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: FrontEndConfigs.kSecondaryColor.withOpacity(0.1),

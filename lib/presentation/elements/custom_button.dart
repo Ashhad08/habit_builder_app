@@ -10,11 +10,13 @@ class CustomButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.onPressed,
+    this.backGroundColor = FrontEndConfigs.kPrimaryColor,
   }) : super(key: key);
   final String buttonText;
   final double height;
   final double width;
   final VoidCallback onPressed;
+  final Color backGroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: FrontEndConfigs.kPrimaryColor,
+            backgroundColor: backGroundColor,
             foregroundColor: FrontEndConfigs.kHabitColor,
             elevation: 0,
             shadowColor: FrontEndConfigs.kHabitColor,

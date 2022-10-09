@@ -7,4 +7,5 @@ class RouteNames {
   static const String forgotPasswordViewRoute = '/forgotPassword';
   static const String bottomBarViewRoute = '/bottomBar';
   static const String createNewHabitViewRoute = '/createNewHabit';
+  static const String habitDetailsViewRoute = '/habitDetails';
 }

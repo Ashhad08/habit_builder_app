@@ -13,18 +13,17 @@ class Testing extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                FrontEndConfigs.kHabitColor,
-                FrontEndConfigs.kWhiteColor,
-                FrontEndConfigs.kWhiteColor,
-              ],
-              stops: [0.7,0.7,1],
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-            ),
-            borderRadius: BorderRadius.circular(16)
-          ),
+              gradient: LinearGradient(
+                colors: [
+                  FrontEndConfigs.kHabitColor,
+                  FrontEndConfigs.kWhiteColor,
+                  FrontEndConfigs.kWhiteColor,
+                ],
+                stops: [0.7, 0.7, 1],
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+              ),
+              borderRadius: BorderRadius.circular(16)),
         ),
       ),
     );

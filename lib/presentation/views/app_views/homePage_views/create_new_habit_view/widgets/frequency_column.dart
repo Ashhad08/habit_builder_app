@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../configurations/front_end.dart';
-import '../../../../elements/custom_text.dart';
-import '../../../../elements/habit_frequency_container.dart';
+import '../../../../../../configurations/front_end.dart';
+import '../../../../../elements/custom_text.dart';
+import '../../../../../elements/habit_frequency_container.dart';
 
 class FrequencyColumn extends StatelessWidget {
   const FrequencyColumn({

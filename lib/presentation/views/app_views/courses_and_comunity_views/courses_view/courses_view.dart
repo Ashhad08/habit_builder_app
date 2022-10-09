@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../configurations/front_end.dart';
-import '../../../elements/custom_icon_button.dart';
-import '../../../elements/custom_text.dart';
+import '../../../../../configurations/front_end.dart';
+import '../../../../elements/custom_icon_button.dart';
+import '../../../../elements/custom_text.dart';
 import 'layout/body.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class CoursesView extends StatelessWidget {
+  const CoursesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: FrontEndConfigs.kScaffoldBGColor,
         elevation: 0,
         title: const CustomText(
-          text: 'Homepage',
+          text: 'Courses',
           fontSize: 18,
           fontWeight: FontWeight.w700,
         ),
@@ -26,8 +27,18 @@ class HomeView extends StatelessWidget {
           child:
               CustomIconButton(onPressed: () {}, icon: Icons.dehaze_outlined),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 12, top: 8, bottom: 5),
+            child:
+                CustomIconButton(onPressed: () {}, icon: CupertinoIcons.search),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
       ),
-      body: const HomeViewBody(),
+      body: CoursesViewBody(),
     );
   }
 }

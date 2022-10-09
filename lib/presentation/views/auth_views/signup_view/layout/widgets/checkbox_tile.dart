@@ -19,7 +19,8 @@ class CheckBoxTile extends StatelessWidget {
     return Row(
       children: [
         Theme(
-          data: ThemeData(unselectedWidgetColor: FrontEndConfigs.kSecondaryColor),
+          data:
+              ThemeData(unselectedWidgetColor: FrontEndConfigs.kSecondaryColor),
           child: Checkbox(
               value: checkBoxValue,
               onChanged: (val) => onChanged(val!),

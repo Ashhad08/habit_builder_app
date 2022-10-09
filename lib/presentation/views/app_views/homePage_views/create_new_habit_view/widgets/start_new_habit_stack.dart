@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../configurations/front_end.dart';
-import '../../../../elements/custom_text.dart';
+import '../../../../../../configurations/front_end.dart';
+import '../../../../../elements/custom_text.dart';
 
 class StartNewHabitStack extends StatelessWidget {
   const StartNewHabitStack({

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:habit_builder_app/presentation/views/app_views/bottom_bar_view/bottom_bar_view.dart';
-import 'package:habit_builder_app/presentation/views/app_views/create_new_habit_view/create_new_habit.dart';
-import 'package:habit_builder_app/presentation/views/auth_views/forgot_password_view/forgot_password_view.dart';
 
 import '../presentation/elements/custom_text.dart';
+import '../presentation/views/app_views/bottom_bar_view/bottom_bar_view.dart';
+import '../presentation/views/app_views/homePage_views/create_new_habit_view/create_new_habit.dart';
+import '../presentation/views/app_views/homePage_views/habit_details_view/habit_details_view.dart';
+import '../presentation/views/auth_views/forgot_password_view/forgot_password_view.dart';
 import '../presentation/views/auth_views/login_view/login_view.dart';
 import '../presentation/views/auth_views/signup_view/signup_view.dart';
 import '../presentation/views/onboarding_views/get_started_view/get_started_view.dart';
@@ -30,6 +31,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => BottomBarView());
       case RouteNames.createNewHabitViewRoute:
         return MaterialPageRoute(builder: (_) => CreateNewHabitView());
+      case RouteNames.habitDetailsViewRoute:
+        return MaterialPageRoute(builder: (_) => HabitDetailsView());
       default:
         return MaterialPageRoute(
             builder: (context) => const Scaffold(

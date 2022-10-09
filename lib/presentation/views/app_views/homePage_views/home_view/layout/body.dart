@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../configurations/front_end.dart';
-import '../../../../elements/custom_text.dart';
-import '../../../../elements/habit_frequency_container.dart';
+import '../../../../../../configurations/front_end.dart';
+import '../../../../../../navigation/route_names.dart';
+import '../../../../../elements/custom_text.dart';
+import '../../../../../elements/habit_frequency_container.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({Key? key}) : super(key: key);
@@ -134,15 +135,21 @@ class HomeViewBody extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          const Expanded(
+                          Expanded(
                             flex: 3,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: FittedBox(
-                                child: CustomText(
-                                    text: 'Read a Book',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w700),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RouteNames.habitDetailsViewRoute);
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: FittedBox(
+                                  child: CustomText(
+                                      text: 'Read a Book',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
                             ),
                           ),
