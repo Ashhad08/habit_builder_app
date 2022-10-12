@@ -20,7 +20,7 @@ class AnalyticsContainer extends StatelessWidget {
         children: [
           Row(
             children: [
-              _buildSingleAnalytics(
+              buildSingleAnalytics(
                   value: '20 Days',
                   title: 'Longest Streak',
                   circleFillColor:
@@ -31,7 +31,7 @@ class AnalyticsContainer extends StatelessWidget {
                 width: 1,
                 color: FrontEndConfigs.kScaffoldBGColor,
               ),
-              _buildSingleAnalytics(
+              buildSingleAnalytics(
                   value: '0 Days',
                   title: 'Current Streak',
                   circleFillColor: const Color(0xffF65B4E).withOpacity(0.2),
@@ -45,7 +45,7 @@ class AnalyticsContainer extends StatelessWidget {
           ),
           Row(
             children: [
-              _buildSingleAnalytics(
+              buildSingleAnalytics(
                   value: '98 %',
                   title: 'Completion Rate',
                   circleFillColor: const Color(0xff29319F).withOpacity(0.2),
@@ -55,7 +55,7 @@ class AnalyticsContainer extends StatelessWidget {
                 width: 1,
                 color: FrontEndConfigs.kScaffoldBGColor,
               ),
-              _buildSingleAnalytics(
+              buildSingleAnalytics(
                   value: '7',
                   title: 'Average Easiness\nScore',
                   circleFillColor: const Color(0xff973456).withOpacity(0.2),
@@ -67,7 +67,7 @@ class AnalyticsContainer extends StatelessWidget {
     );
   }
 
-  Widget _buildSingleAnalytics(
+  Widget buildSingleAnalytics(
       {required String value,
       required String title,
       required circleFillColor,

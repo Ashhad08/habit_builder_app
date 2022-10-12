@@ -27,6 +27,7 @@ class CustomIconButton extends StatelessWidget {
         child: Icon(
           icon,
           color: FrontEndConfigs.kSecondaryColor,
+          size: size / 2,
         ),
       ),
     );

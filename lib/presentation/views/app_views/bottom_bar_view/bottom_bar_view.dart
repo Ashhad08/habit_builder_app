@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../configurations/front_end.dart';
 import '../../../../navigation/route_names.dart';
-import '../../../../testing.dart';
 import '../../../elements/custom_floating_button.dart';
-import '../courses_and_comunity_views/courses_view/courses_view.dart';
+import '../courses_and_community_views/community_view/community_view.dart';
+import '../courses_and_community_views/courses_view/courses_view.dart';
 import '../homePage_views/home_view/home_view.dart';
+import '../settings_and_profile_views/settings_view/settings_view.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView({Key? key}) : super(key: key);
@@ -20,8 +21,8 @@ class _BottomBarViewState extends State<BottomBarView> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
     CoursesView(),
-    Testing(),
-    Testing(),
+    CommunityView(),
+    SettingsView(),
   ];
 
   void _onItemTapped(int index) {

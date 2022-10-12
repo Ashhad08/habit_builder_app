@@ -8,4 +8,7 @@ class RouteNames {
   static const String bottomBarViewRoute = '/bottomBar';
   static const String createNewHabitViewRoute = '/createNewHabit';
   static const String habitDetailsViewRoute = '/habitDetails';
+  static const String courseDetailsViewRoute = '/courseDetails';
+  static const String profileViewRoute = '/profile';
+  static const String subscriptionViewRoute = '/subscription';
 }

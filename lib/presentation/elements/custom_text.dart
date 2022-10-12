@@ -10,17 +10,19 @@ class CustomText extends StatelessWidget {
   final TextAlign? align;
   final String fontFamily;
   final TextDecoration? textDecoration;
+  final int? maxLines;
 
-  const CustomText({
-    Key? key,
-    required this.text,
-    required this.fontSize,
-    required this.fontWeight,
-    this.textColor = FrontEndConfigs.kSecondaryColor,
-    this.align = TextAlign.start,
-    this.fontFamily = 'Manrope',
-    this.textDecoration,
-  }) : super(key: key);
+  const CustomText(
+      {Key? key,
+      required this.text,
+      required this.fontSize,
+      required this.fontWeight,
+      this.textColor = FrontEndConfigs.kSecondaryColor,
+      this.align = TextAlign.start,
+      this.fontFamily = 'Manrope',
+      this.textDecoration,
+      this.maxLines})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class CustomText extends StatelessWidget {
           decoration: textDecoration,
           color: textColor),
       textAlign: align,
+      maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
     );
   }

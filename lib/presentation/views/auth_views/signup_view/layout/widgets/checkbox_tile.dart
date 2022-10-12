@@ -8,11 +8,13 @@ class CheckBoxTile extends StatelessWidget {
       {Key? key,
       required this.checkBoxValue,
       required this.onChanged,
-      required this.title})
+      required this.title,
+      this.isRound = false})
       : super(key: key);
   final bool checkBoxValue;
   final Function(bool) onChanged;
   final String title;
+  final bool isRound;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CheckBoxTile extends StatelessWidget {
               value: checkBoxValue,
               onChanged: (val) => onChanged(val!),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(isRound ? 100 : 6),
               ),
               checkColor: FrontEndConfigs.kSecondaryColor,
               activeColor: FrontEndConfigs.kPrimaryColor),
@@ -33,6 +35,9 @@ class CheckBoxTile extends StatelessWidget {
         Expanded(
             child: CustomText(
                 text: title, fontSize: 16, fontWeight: FontWeight.w500)),
+        SizedBox(
+          width: 10,
+        ),
       ],
     );
   }

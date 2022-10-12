@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../presentation/elements/custom_text.dart';
 import '../presentation/views/app_views/bottom_bar_view/bottom_bar_view.dart';
+import '../presentation/views/app_views/courses_and_community_views/course_details_view/course_details_view.dart';
 import '../presentation/views/app_views/homePage_views/create_new_habit_view/create_new_habit.dart';
 import '../presentation/views/app_views/homePage_views/habit_details_view/habit_details_view.dart';
+import '../presentation/views/app_views/settings_and_profile_views/profile_view/profile_view.dart';
+import '../presentation/views/app_views/settings_and_profile_views/subscription_view/subscription_view.dart';
 import '../presentation/views/auth_views/forgot_password_view/forgot_password_view.dart';
 import '../presentation/views/auth_views/login_view/login_view.dart';
 import '../presentation/views/auth_views/signup_view/signup_view.dart';
@@ -33,6 +36,12 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => CreateNewHabitView());
       case RouteNames.habitDetailsViewRoute:
         return MaterialPageRoute(builder: (_) => HabitDetailsView());
+      case RouteNames.courseDetailsViewRoute:
+        return MaterialPageRoute(builder: (_) => CourseDetailsView());
+      case RouteNames.profileViewRoute:
+        return MaterialPageRoute(builder: (_) => ProfileView());
+      case RouteNames.subscriptionViewRoute:
+        return MaterialPageRoute(builder: (_) => SubscriptionView());
       default:
         return MaterialPageRoute(
             builder: (context) => const Scaffold(
