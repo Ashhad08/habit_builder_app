@@ -25,7 +25,7 @@ class LoginView extends StatelessWidget {
           ),
         ],
       ),
-      body: const LoginViewBody(),
+      body: LoginViewBody(),
     );
   }
 }

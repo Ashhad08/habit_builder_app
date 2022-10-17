@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_builder_app/backend/models/habit_model.dart';
 
 import '../../../../../configurations/front_end.dart';
 import '../../../../elements/custom_icon_button.dart';
@@ -6,7 +7,8 @@ import '../../../../elements/custom_text.dart';
 import 'layout/body.dart';
 
 class HabitDetailsView extends StatelessWidget {
-  const HabitDetailsView({Key? key}) : super(key: key);
+  const HabitDetailsView(this._habitModel, {Key? key}) : super(key: key);
+  final HabitModel _habitModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,8 @@ class HabitDetailsView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: FrontEndConfigs.kScaffoldBGColor,
         elevation: 0,
-        title: const CustomText(
-          text: 'Read A Book',
+        title: CustomText(
+          text: _habitModel.habitName ?? '',
           fontSize: 18,
           fontWeight: FontWeight.w700,
         ),
@@ -40,7 +42,7 @@ class HabitDetailsView extends StatelessWidget {
           ),
         ],
       ),
-      body: const HabitDetailsViewBody(),
+      body: HabitDetailsViewBody(_habitModel),
     );
   }
 }

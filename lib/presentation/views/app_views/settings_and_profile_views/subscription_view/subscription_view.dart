@@ -30,7 +30,7 @@ class SubscriptionView extends StatelessWidget {
               icon: Icons.arrow_back),
         ),
       ),
-      body: SubscriptionViewBody(),
+      body: const SubscriptionViewBody(),
     );
   }
 }

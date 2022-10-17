@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_builder_app/backend/models/habit_model.dart';
 
 import '../presentation/elements/custom_text.dart';
 import '../presentation/views/app_views/bottom_bar_view/bottom_bar_view.dart';
@@ -19,29 +20,31 @@ class RoutesGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.splashViewRoute:
-        return MaterialPageRoute(builder: (_) => SplashView());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case RouteNames.onBoardingViewRoute:
-        return MaterialPageRoute(builder: (_) => OnBoardingView());
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case RouteNames.getStartedViewRoute:
-        return MaterialPageRoute(builder: (_) => GetStartedView());
+        return MaterialPageRoute(builder: (_) => const GetStartedView());
       case RouteNames.loginViewRoute:
-        return MaterialPageRoute(builder: (_) => LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.signUpViewRoute:
-        return MaterialPageRoute(builder: (_) => SignUpView());
+        return MaterialPageRoute(builder: (_) => const SignUpView());
       case RouteNames.forgotPasswordViewRoute:
-        return MaterialPageRoute(builder: (_) => ForgotPasswordView());
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case RouteNames.bottomBarViewRoute:
-        return MaterialPageRoute(builder: (_) => BottomBarView());
+        return MaterialPageRoute(builder: (_) => const BottomBarView());
       case RouteNames.createNewHabitViewRoute:
-        return MaterialPageRoute(builder: (_) => CreateNewHabitView());
+        return MaterialPageRoute(builder: (_) => const CreateNewHabitView());
       case RouteNames.habitDetailsViewRoute:
-        return MaterialPageRoute(builder: (_) => HabitDetailsView());
+        return MaterialPageRoute(
+          builder: (_) => HabitDetailsView(settings.arguments as HabitModel),
+        );
       case RouteNames.courseDetailsViewRoute:
-        return MaterialPageRoute(builder: (_) => CourseDetailsView());
+        return MaterialPageRoute(builder: (_) => const CourseDetailsView());
       case RouteNames.profileViewRoute:
-        return MaterialPageRoute(builder: (_) => ProfileView());
+        return MaterialPageRoute(builder: (_) => const ProfileView());
       case RouteNames.subscriptionViewRoute:
-        return MaterialPageRoute(builder: (_) => SubscriptionView());
+        return MaterialPageRoute(builder: (_) => const SubscriptionView());
       default:
         return MaterialPageRoute(
             builder: (context) => const Scaffold(

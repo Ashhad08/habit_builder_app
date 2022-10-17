@@ -23,7 +23,7 @@ class ForgotPasswordView extends StatelessWidget {
               icon: Icons.arrow_back),
         ),
       ),
-      body: const ForgotPasswordViewBody(),
+      body: ForgotPasswordViewBody(),
     );
   }
 }

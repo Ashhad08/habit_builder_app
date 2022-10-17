@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
               CustomIconButton(onPressed: () {}, icon: Icons.dehaze_outlined),
         ),
       ),
-      body: const HomeViewBody(),
+      body: HomeViewBody(),
     );
   }
 }

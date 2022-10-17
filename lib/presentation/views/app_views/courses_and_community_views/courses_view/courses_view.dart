@@ -38,7 +38,7 @@ class CoursesView extends StatelessWidget {
           ),
         ],
       ),
-      body: CoursesViewBody(),
+      body: const CoursesViewBody(),
     );
   }
 }

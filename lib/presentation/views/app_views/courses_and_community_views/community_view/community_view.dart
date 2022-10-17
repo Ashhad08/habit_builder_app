@@ -27,7 +27,7 @@ class CommunityView extends StatelessWidget {
               CustomIconButton(onPressed: () {}, icon: Icons.dehaze_outlined),
         ),
       ),
-      body: CommunityViewBody(),
+      body: const CommunityViewBody(),
     );
   }
 }

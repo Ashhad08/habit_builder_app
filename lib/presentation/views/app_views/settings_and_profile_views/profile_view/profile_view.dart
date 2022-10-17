@@ -40,7 +40,7 @@ class ProfileView extends StatelessWidget {
           ),
         ],
       ),
-      body: ProfileViewBody(),
+      body: const ProfileViewBody(),
     );
   }
 }

@@ -35,7 +35,7 @@ class CheckBoxTile extends StatelessWidget {
         Expanded(
             child: CustomText(
                 text: title, fontSize: 16, fontWeight: FontWeight.w500)),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
       ],

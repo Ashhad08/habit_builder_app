@@ -1,5 +1,13 @@
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../../backend/models/habit_model.dart';
+import '../../../../../backend/models/reminder_model.dart';
+import '../../../../../backend/services/system_services.dart';
 import '../../../../../configurations/front_end.dart';
 import '../../../../elements/auth_text_field.dart';
 import '../../../../elements/custom_button.dart';
@@ -21,34 +29,78 @@ class CreateNewHabitView extends StatefulWidget {
 
 class _CreateNewHabitViewState extends State<CreateNewHabitView> {
   bool notification = false;
-  DateTime reminderTime = DateTime.now();
+  final List<ReminderModel> _remindersList = [];
+  final TextEditingController _habitNameController = TextEditingController();
+  final _systemServices = SystemServices();
+  bool isLoading = false;
+
+  @override
+  void dispose() {
+    _habitNameController.dispose();
+    _remindersList.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: FrontEndConfigs.kScaffoldBGColor,
-      appBar: AppBar(
-        backgroundColor: FrontEndConfigs.kScaffoldBGColor,
-        elevation: 0,
-        title: const CustomText(
-          text: 'New Habit',
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-        ),
-        centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12, top: 8, bottom: 5),
-          child: CustomIconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icons.arrow_back),
-        ),
+    return BlurryModalProgressHUD(
+      color: FrontEndConfigs.kPrimaryColor.withOpacity(0.3),
+      inAsyncCall: isLoading,
+      blurEffectIntensity: 1,
+      progressIndicator: const CupertinoActivityIndicator(
+        radius: 15,
+        color: FrontEndConfigs.kSecondaryColor,
       ),
-      body: _getBody(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomFloatingButton(
-          iconPath: 'assets/images/done.png', onPressed: () {}),
+      child: Scaffold(
+        backgroundColor: FrontEndConfigs.kScaffoldBGColor,
+        appBar: AppBar(
+          backgroundColor: FrontEndConfigs.kScaffoldBGColor,
+          elevation: 0,
+          title: const CustomText(
+            text: 'New Habit',
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+          centerTitle: true,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 12, top: 8, bottom: 5),
+            child: CustomIconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icons.arrow_back),
+          ),
+        ),
+        body: _getBody(context),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: CustomFloatingButton(
+            iconPath: 'assets/images/done.png',
+            onPressed: () {
+              makeLoadingTrue();
+              _systemServices
+                  .createHabit(
+                      HabitModel(
+                        uid: FirebaseAuth.instance.currentUser!.uid,
+                        habitName: _habitNameController.text,
+                        // reminders: _remindersList
+                      ),
+                      _remindersList)
+                  .then((value) {
+                _remindersList.clear();
+                _habitNameController.clear();
+                FocusManager.instance.primaryFocus!.unfocus();
+                makeLoadingFalse();
+                FrontEndConfigs.showToast(
+                    toastMessage: 'Habit created',
+                    color: FrontEndConfigs.kSecondaryColor);
+              }).onError((error, stackTrace) {
+                makeLoadingFalse();
+                FrontEndConfigs.showToast(
+                    toastMessage: 'Something went wrong!', color: Colors.red);
+                debugPrint("error $error");
+              });
+            }),
+      ),
     );
   }
 
@@ -75,6 +127,7 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
               AuthTextField(
                   hintText: 'Enter habit name',
                   isPasswordField: false,
+                  controller: _habitNameController,
                   isPrefix: false,
                   height: 50,
                   fillColor: FrontEndConfigs.kWhiteColor),
@@ -97,8 +150,11 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500),
                     const Spacer(),
-                    const CustomText(
-                        text: '10:00AM',
+                    CustomText(
+                        text: _remindersList.isEmpty
+                            ? "Create Reminders"
+                            : DateFormat('KK:mm a')
+                                .format(_remindersList.last.time.toDate()),
                         fontSize: 14,
                         textColor: FrontEndConfigs.kPrimaryColor,
                         fontWeight: FontWeight.w700),
@@ -114,9 +170,8 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
                               ),
                             ),
                             builder: (context) {
-                              bool reminder = false;
                               return StatefulBuilder(
-                                builder: (context, setState) {
+                                builder: (context, setModalState) {
                                   return Container(
                                     height: 600,
                                     decoration: const BoxDecoration(
@@ -127,28 +182,51 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
                                     child: Column(
                                       children: [
                                         Expanded(
-                                            child: GridView.builder(
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                                        crossAxisCount: 3,
-                                                        crossAxisSpacing: 5,
-                                                        childAspectRatio: 7 / 6,
-                                                        mainAxisSpacing: 10),
-                                                itemCount: 9,
-                                                padding:
-                                                    const EdgeInsets.all(20),
-                                                physics:
-                                                    const BouncingScrollPhysics(),
-                                                itemBuilder: (context, index) {
-                                                  return ReminderContainer(
-                                                      value: reminder,
-                                                      onChanged: (val) {
-                                                        setState(() {
-                                                          reminder = val;
-                                                        });
-                                                      },
-                                                      reminderTime: '06:30 AM');
-                                                })),
+                                            child: _remindersList.isNotEmpty
+                                                ? GridView.builder(
+                                                    gridDelegate:
+                                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                                            crossAxisCount: 3,
+                                                            crossAxisSpacing: 5,
+                                                            childAspectRatio:
+                                                                7 / 6,
+                                                            mainAxisSpacing:
+                                                                10),
+                                                    itemCount:
+                                                        _remindersList.length,
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            20),
+                                                    physics:
+                                                        const BouncingScrollPhysics(),
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return ReminderContainer(
+                                                          value: _remindersList[
+                                                                  index]
+                                                              .status,
+                                                          onChanged: (val) {
+                                                            setModalState(() {
+                                                              _remindersList[
+                                                                      index]
+                                                                  .status = val;
+                                                            });
+                                                          },
+                                                          reminderTime: DateFormat(
+                                                                  'KK:mm a')
+                                                              .format(
+                                                                  _remindersList[
+                                                                          index]
+                                                                      .time
+                                                                      .toDate()));
+                                                    })
+                                                : const Center(
+                                                    child: CustomText(
+                                                        text: 'No Reminders',
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  )),
                                         const SizedBox(
                                           height: 5,
                                         ),
@@ -161,6 +239,7 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
                                               width: double.infinity,
                                               onPressed: () {
                                                 Navigator.pop(context);
+                                                DateTime time = DateTime.now();
                                                 showModalBottomSheet(
                                                     barrierColor:
                                                         Colors.black54,
@@ -170,10 +249,22 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
                                                           onCancel: () {
                                                         Navigator.pop(context);
                                                       }, onSave: () {
+                                                        _remindersList.add(
+                                                            ReminderModel(
+                                                                status: true,
+                                                                time: Timestamp
+                                                                    .fromDate(
+                                                                        time)));
+
                                                         Navigator.pop(context);
+                                                        FocusManager.instance
+                                                            .primaryFocus!
+                                                            .unfocus();
+
+                                                        setState(() {});
                                                       }, onTimeChanged:
                                                               (newTime) {
-                                                        reminderTime = newTime;
+                                                        time = newTime;
                                                       });
                                                     });
                                               }),
@@ -234,5 +325,15 @@ class _CreateNewHabitViewState extends State<CreateNewHabitView> {
         ),
       ),
     );
+  }
+
+  makeLoadingTrue() {
+    isLoading = true;
+    setState(() {});
+  }
+
+  makeLoadingFalse() {
+    isLoading = false;
+    setState(() {});
   }
 }

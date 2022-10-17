@@ -27,7 +27,7 @@ class SettingsView extends StatelessWidget {
               CustomIconButton(onPressed: () {}, icon: Icons.dehaze_outlined),
         ),
       ),
-      body: SettingsViewBody(),
+      body: const SettingsViewBody(),
     );
   }
 }

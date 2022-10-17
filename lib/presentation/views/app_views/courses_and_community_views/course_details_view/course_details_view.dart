@@ -30,7 +30,7 @@ class CourseDetailsView extends StatelessWidget {
               icon: Icons.arrow_back),
         ),
       ),
-      body: CourseDetailsViewBody(),
+      body: const CourseDetailsViewBody(),
     );
   }
 }

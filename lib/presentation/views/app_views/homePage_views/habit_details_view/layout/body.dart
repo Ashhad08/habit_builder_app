@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_builder_app/backend/services/system_services.dart';
 
+import '../../../../../../backend/models/habit_model.dart';
 import '../../../../../../configurations/front_end.dart';
 import '../../../../../elements/custom_button.dart';
 import '../../../../../elements/custom_text.dart';
@@ -8,7 +10,8 @@ import 'widgets/habit_completion_dialog.dart';
 import 'widgets/habit_details_container.dart';
 
 class HabitDetailsViewBody extends StatelessWidget {
-  const HabitDetailsViewBody({Key? key}) : super(key: key);
+  const HabitDetailsViewBody(this._habitModel, {Key? key}) : super(key: key);
+  final HabitModel _habitModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,11 @@ class HabitDetailsViewBody extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: HabitInfoContainer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: HabitInfoContainer(
+              habitName: _habitModel.habitName ?? '',
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -55,11 +60,17 @@ class HabitDetailsViewBody extends StatelessWidget {
                     height: 60,
                     width: double.infinity,
                     onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const HabitCompletionDialog();
-                          });
+                      SystemServices()
+                          .markHabitAsCompleted(_habitModel.habitId.toString())
+                          .whenComplete(() {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const HabitCompletionDialog();
+                            });
+                      }).onError((error, stackTrace) {
+                        debugPrint(error.toString());
+                      });
                     })
               ],
             ),

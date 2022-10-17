@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../navigation/route_names.dart';
@@ -17,7 +18,12 @@ class _SplashViewState extends State<SplashView> {
   initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, RouteNames.onBoardingViewRoute);
+      FirebaseAuth.instance.currentUser != null
+          ? Navigator.pushNamed(context, RouteNames.bottomBarViewRoute)
+          : Navigator.pushNamed(
+              context,
+              RouteNames.onBoardingViewRoute,
+            );
     });
   }
 

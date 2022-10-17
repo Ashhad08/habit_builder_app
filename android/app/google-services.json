@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "95344340991",
+    "project_id": "habitbuilder-94d83",
+    "storage_bucket": "habitbuilder-94d83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95344340991:android:7792411abb4ba1be28c1ca",
+        "android_client_info": {
+          "package_name": "com.infusibleCoders.habit_builder_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95344340991-034ra5hh29dtimdk8aeblps8288cm1ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF-Rd4BmJeb1zo2cFS5NNPfsRI3l13I7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95344340991-034ra5hh29dtimdk8aeblps8288cm1ra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

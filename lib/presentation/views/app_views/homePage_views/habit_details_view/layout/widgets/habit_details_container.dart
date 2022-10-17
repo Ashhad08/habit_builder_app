@@ -6,7 +6,9 @@ import '../../../../../../elements/custom_text.dart';
 class HabitInfoContainer extends StatelessWidget {
   const HabitInfoContainer({
     Key? key,
+    required this.habitName,
   }) : super(key: key);
+  final String habitName;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +37,8 @@ class HabitInfoContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText(
-                  text: 'Read a Book',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
+              CustomText(
+                  text: habitName, fontSize: 16, fontWeight: FontWeight.w700),
               const SizedBox(
                 height: 5,
               ),
