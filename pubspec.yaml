@@ -45,6 +45,9 @@ dependencies:
   blurry_modal_progress_hud: ^1.0.3
   intl: ^0.17.0
   provider: ^6.0.4
+  firebase_messaging: ^13.1.0
+  flutter_local_notifications: ^12.0.2
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
